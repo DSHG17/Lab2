@@ -56,3 +56,32 @@ export const saveAppointment = async (req, res) => {
     });
   }
 };
+
+
+
+
+export const getAppointment = async (req, res) => {
+  try{
+      const { limite = 5, desde = 0 } = req.query
+      const query = { status: 'CREATED' }
+
+      const [total, appointment ] = await Promise.all([
+          Appointment.countDocuments(query),
+          Appointment.find(query)
+              .skip(Number(desde))
+              .limit(Number(limite))
+      ])
+
+      return res.status(200).json({
+          success: true,
+          total,
+          appointment
+      })
+  }catch(err){
+      return res.status(500).json({
+          success: false,
+          message: "Error al alistar las citas",
+          error: err.message
+      })
+  }
+}

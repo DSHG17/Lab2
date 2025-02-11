@@ -116,11 +116,40 @@ Las siguientes funcionalidades necesitan ser desarrolladas:
 1. **Actualizar Foto del Usuario**
    - Descripción: Implementar funcionalidad para actualizar la foto de perfil del usuario.
 
+   - **Actualizar foto del usuario**
+  - **URL:** `/adoptionSystem/v1/user/updateProfilePicture/:uid`
+  - **Método:** `PATCH`
+  - **Cuerpo:**
+    ```form data: profilePicture
+    ```
+
 2. **Listar Citas**
    - Descripción: Implementar funcionalidad para listar todas las citas de un usuario.
+
+   - **Registrar Usuario**
+  - **URL:** `/appointment/getAppointmentsByUserId/:uid`
+  - **Método:** `GET`
 
 3. **Actualizar Cita**
    - Descripción: Implementar funcionalidad para actualizar una cita existente.
 
+   - **Actualizar Información de la Mascota**
+  - **URL:** `/api/pets/:pid`
+  - **Método:** `PUT`
+  - **Cuerpo:**
+    ```json
+    {
+      "name": "string",
+      "age": "number",
+      "type": "string",
+      "breed": "string"
+    }
+    ```
+
 4. **Cancelar Cita**
    - Descripción: Implementar funcionalidad para cancelar una cita existente.
+
+   - **Actualizar Información de la Mascota**
+  - **URL:** `appointment/cancelAppointment/:aid`
+  - **Método:** `DELETE`
+    ```

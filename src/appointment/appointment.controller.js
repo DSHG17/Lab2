@@ -1,6 +1,6 @@
 import Pet from "../pet/pet.model.js";
 import Appointment from "../appointment/appointment.model.js";
-import { parse } from "date-fns";
+import User from "../user/user.model.js"
 
 export const saveAppointment = async (req, res) => {
   try {
@@ -84,4 +84,74 @@ export const getAppointment = async (req, res) => {
           error: err.message
       })
   }
+}
+
+export const getAppointmentsByUser = async (req, res) => {
+  try {
+    const userId = req.params.uid;
+    const user = await User.findById(userId);
+
+      if (!user) {
+          return res.status(404).json({
+              success: false,
+              message: "Usuario no encontrado"
+          });
+      }
+
+
+      const appointments = await Appointment.find({ user: user._id})
+
+      if (appointments.length === 0) {
+          return res.status(404).json({
+              success: false,
+              message: "No se encontraron citas activas"
+          });
+      }
+
+      return res.status(200).json({
+          success: true,
+          appointments: appointments
+      });
+
+  } catch (error) {
+      return res.status(500).json({
+          success: false,
+          message: "Error al obtener las citas",
+          error: error.message
+      });
+  }
+}
+
+export const cancelAppointment = async (req, res) => {
+  try {
+    const { aid } = req.params;
+    console.log(aid)
+ 
+    const appointment = await Appointment.findById(aid);
+ 
+    if (!appointment) {
+      return res.status(404).json({
+        success: false,
+        msg: "Cita no encontrada",
+      });
+    }
+ 
+    appointment.status = "CANCELLED";
+    await appointment.save();
+ 
+    return res.status(200).json({
+      success: true,
+      msg: "Cita cancelada exitosamente",
+      appointment,
+    });
+ 
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      msg: "Error al cancelar la cita",
+      error,
+    });
+  }
+
 }

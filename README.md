@@ -126,14 +126,14 @@ Las siguientes funcionalidades necesitan ser desarrolladas:
 2. **Listar Citas**
    - Descripción: Implementar funcionalidad para listar todas las citas de un usuario.
 
-   - **Registrar Usuario**
+   - **Listar citas por usuario**
   - **URL:** `/appointment/getAppointmentsByUserId/:uid`
   - **Método:** `GET`
 
 3. **Actualizar Cita**
    - Descripción: Implementar funcionalidad para actualizar una cita existente.
 
-   - **Actualizar Información de la Mascota**
+   - **Actualizar informacion de la cita**
   - **URL:** `/api/pets/:pid`
   - **Método:** `PUT`
   - **Cuerpo:**
@@ -149,7 +149,7 @@ Las siguientes funcionalidades necesitan ser desarrolladas:
 4. **Cancelar Cita**
    - Descripción: Implementar funcionalidad para cancelar una cita existente.
 
-   - **Actualizar Información de la Mascota**
+   - **Cancelar cita**
   - **URL:** `appointment/cancelAppointment/:aid`
   - **Método:** `DELETE`
     ```
